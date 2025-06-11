@@ -3,113 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameStore - 최고의 게임을 만나보세요</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GameStore - 게임 판매 사이트</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">🎮 GameStore</div>
-            <ul class="nav-links">
-                <li><a href="#home">홈</a></li>
-                <li><a href="#games">게임</a></li>
-                <li><a href="#about">소개</a></li>
-                <li><a href="#contact">연락처</a></li>
-            </ul>
-            <button class="cart-btn" onclick="openCart()">
-                🛒 장바구니 (<span id="cart-count">0</span>)
-            </button>
-        </nav>
+        <div class="container">
+            <h1>GameStore</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">홈</a></li>
+                    <li><a href="#games">게임</a></li>
+                    <li><a href="#about">소개</a></li>
+                    <li><a href="#contact">문의</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <span id="cart-count">0</span>
+                <span>장바구니</span>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section class="hero" id="home">
+        <section class="hero">
             <div class="container">
-                <h1>최고의 게임을 만나보세요</h1>
-                <p>다양한 장르의 게임을 저렴한 가격에 즐겨보세요</p>
-                <a href="#games" class="cta-button">게임 둘러보기</a>
+                <h2>최신 게임을 만나보세요</h2>
+                <p>다양한 장르의 게임을 저렴한 가격에 즐기세요</p>
             </div>
         </section>
 
-        <section class="games-section" id="games">
+        <section class="games-section">
             <div class="container">
-                <h2 class="section-title">인기 게임</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-game="cyberpunk">
-                        <div class="game-image">🤖</div>
-                        <h3 class="game-title">사이버펑크 2077</h3>
-                        <p class="game-genre">RPG • 액션</p>
-                        <div class="game-price">₩59,000</div>
-                        <button class="buy-button" onclick="addToCart('사이버펑크 2077', 59000)">구매하기</button>
-                    </div>
-
-                    <div class="game-card" data-game="witcher">
-                        <div class="game-image">⚔️</div>
-                        <h3 class="game-title">더 위쳐 3</h3>
-                        <p class="game-genre">RPG • 판타지</p>
-                        <div class="game-price">₩39,000</div>
-                        <button class="buy-button" onclick="addToCart('더 위쳐 3', 39000)">구매하기</button>
-                    </div>
-
-                    <div class="game-card" data-game="minecraft">
-                        <div class="game-image">🧱</div>
-                        <h3 class="game-title">마인크래프트</h3>
-                        <p class="game-genre">샌드박스 • 어드벤처</p>
-                        <div class="game-price">₩26,000</div>
-                        <button class="buy-button" onclick="addToCart('마인크래프트', 26000)">구매하기</button>
-                    </div>
-
-                    <div class="game-card" data-game="gta">
-                        <div class="game-image">🚗</div>
-                        <h3 class="game-title">GTA V</h3>
-                        <p class="game-genre">액션 • 오픈월드</p>
-                        <div class="game-price">₩45,000</div>
-                        <button class="buy-button" onclick="addToCart('GTA V', 45000)">구매하기</button>
-                    </div>
-
-                    <div class="game-card" data-game="valorant">
-                        <div class="game-image">🎯</div>
-                        <h3 class="game-title">발로란트</h3>
-                        <p class="game-genre">FPS • 전략</p>
-                        <div class="game-price">무료</div>
-                        <button class="buy-button" onclick="addToCart('발로란트', 0)">다운로드</button>
-                    </div>
-
-                    <div class="game-card" data-game="stardew">
-                        <div class="game-image">🌾</div>
-                        <h3 class="game-title">스타듀 밸리</h3>
-                        <p class="game-genre">시뮬레이션 • 인디</p>
-                        <div class="game-price">₩16,000</div>
-                        <button class="buy-button" onclick="addToCart('스타듀 밸리', 16000)">구매하기</button>
-                    </div>
+                <h2>인기 게임</h2>
+                <div class="games-grid" id="games-grid">
+                    <!-- 게임 카드들이 여기에 동적으로 추가됩니다 -->
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Cart Modal -->
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeCart()">&times;</span>
-            <h2>장바구니</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">
-                총 금액: ₩<span id="total-price">0</span>
-            </div>
-            <button class="cta-button" style="width: 100%; margin-top: 1rem;" onclick="checkout()">
-                결제하기
-            </button>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GameStore. All rights reserved.</p>
         </div>
-    </div>
-     <script src="script.js">
-     </script>
-     <!-- GA4 Global Site Tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJQW284749"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-CJQW284749');
-</script>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cart {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cart:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #cart-count {
+            background-color: #ff4757;
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Games Section */
+        .games-section {
+            padding: 4rem 0;
+            background-color: #2c2c2c;
+        }
+
+        .games-section h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .game-card p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .game-card .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .game-card .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .game-card .genre {
+            background-color: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(135deg, #44a08d 0%, #4ecdc4 100%);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        // 게임 데이터
+        const games = [
+            {
+                id: 1,
+                name: "Counter-Strike 2",
+                genre: "FPS",
+                price: "무료",
+                originalPrice: null,
+                description: "세계에서 가장 인기 있는 팀 기반 액션 게임",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop"
+            },
+            {
+                id: 2,
+                name: "Cyberpunk 2077",
+                genre: "RPG",
+                price: "29,000원",
+                originalPrice: "59,000원",
+                description: "미래 도시 나이트 시티를 배경으로 한 오픈 월드 RPG",
+                image: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400&h=300&fit=crop"
+            },
+            {
+                id: 3,
+                name: "Grand Theft Auto V",
+                genre: "액션",
+                price: "19,500원",
+                originalPrice: "39,000원",
+                description: "로스 산토스를 배경으로 한 오픈 월드 액션 게임",
+                image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400&h=300&fit=crop"
+            },
+            {
+                id: 4,
+                name: "Apex Legends",
+                genre: "배틀로얄",
+                price: "무료",
+                originalPrice: null,
+                description: "60명의 플레이어가 참여하는 무료 배틀로얄 게임",
+                image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&h=300&fit=crop"
+            },
+            {
+                id: 5,
+                name: "Elden Ring",
+                genre: "액션 RPG",
+                price: "49,000원",
+                originalPrice: "69,000원",
+                description: "프롬 소프트웨어의 최신 소울 시리즈 게임",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop"
+            },
+            {
+                id: 6,
+                name: "Dota 2",
+                genre: "MOBA",
+                price: "무료",
+                originalPrice: null,
+                description: "전략적 팀 플레이가 핵심인 MOBA 게임",
+                image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=300&fit=crop"
+            },
+            {
+                id: 7,
+                name: "The Witcher 3",
+                genre: "RPG",
+                price: "9,900원",
+                originalPrice: "39,000원",
+                description: "게랄트의 마지막 모험을 그린 판타지 RPG",
+                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&h=300&fit=crop"
+            },
+            {
+                id: 8,
+                name: "Rust",
+                genre: "서바이벌",
+                price: "31,000원",
+                originalPrice: "37,000원",
+                description: "하드코어 서바이벌 멀티플레이어 게임",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop"
+            },
+            {
+                id: 9,
+                name: "Dead by Daylight",
+                genre: "공포",
+                price: "12,000원",
+                originalPrice: "20,000원",
+                description: "4 vs 1 비대칭 멀티플레이어 공포 게임",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop"
+            }
+        ];
+
+        let cart = [];
+
+        // 페이지 로드 시 게임 목록 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            displayGames();
+            updateCartCount();
+        });
+
+        // 게임 목록 표시 함수
+        function displayGames() {
+            const gamesGrid = document.getElementById('games-grid');
+            gamesGrid.innerHTML = '';
+
+            games.forEach(game => {
+                const gameCard = createGameCard(game);
+                gamesGrid.appendChild(gameCard);
+            });
+        }
+
+        // 게임 카드 생성 함수
+        function createGameCard(game) {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            
+            const priceDisplay = game.originalPrice 
+                ? `<span class="original-price">${game.originalPrice}</span>${game.price}`
+                : game.price;
+
+            card.innerHTML = `
+                <img src="${game.image}" alt="${game.name}">
+                <h3>${game.name}</h3>
+                <span class="genre">${game.genre}</span>
+                <p>${game.description}</p>
+                <div class="price">${priceDisplay}</div>
+                <button class="buy-btn" onclick="addToCart(${game.id})">
+                    ${game.price === '무료' ? '다운로드' : '장바구니에 추가'}
+                </button>
+            `;
+
+            return card;
+        }
+
+        // 장바구니에 추가 함수
+        function addToCart(gameId) {
+            const game = games.find(g => g.id === gameId);
+            if (game) {
+                const existingItem = cart.find(item => item.id === gameId);
+                if (existingItem) {
+                    alert('이미 장바구니에 있는 게임입니다!');
+                } else {
+                    cart.push(game);
+                    updateCartCount();
+                    alert(`${game.name}이(가) 장바구니에 추가되었습니다!`);
+                }
+            }
+        }
+
+        // 장바구니 개수 업데이트 함수
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            cartCount.textContent = cart.length;
+        }
+
+        // 장바구니 클릭 이벤트
+        document.querySelector('.cart').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('장바구니가 비어있습니다.');
+            } else {
+                let cartItems = '장바구니 내용:\n\n';
+                cart.forEach(game => {
+                    cartItems += `${game.name} - ${game.price}\n`;
+                });
+                alert(cartItems);
+            }
+        });
+
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#games') {
+                    document.querySelector('.games-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else if (targetId === '#home') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
